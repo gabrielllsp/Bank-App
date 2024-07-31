@@ -54,16 +54,16 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //Firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-database-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.database.ktx)
 
     // ViewModel
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
     // LiveData
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation (libs.androidx.lifecycle.livedata.ktx)
 
     //Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.42")
-    kapt("com.google.dagger:hilt-android-compiler:2.42")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
