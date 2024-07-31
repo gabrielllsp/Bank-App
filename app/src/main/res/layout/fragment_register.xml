@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:fillViewport="true"
     tools:context=".presenter.auth.register.RegisterFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
@@ -31,8 +31,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Criar conta"
-                    android:textColor="@color/black"/>
+                    android:text="@string/title_register_fragment"
+                    android:textColor="@color/black" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -48,106 +48,143 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Nome"
+                android:text="@string/text_name_register_fragment"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
-                android:id="@+id/edt_name"
+                android:id="@+id/edit_name"
+                style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:importantForAutofill="no"
                 android:layout_marginTop="4dp"
-                style="@style/ThemeEditText"
-                android:hint="Digite seu nome"
+                android:inputType="textEmailAddress"
                 android:drawableStart="@drawable/ic_user"
-                android:drawablePadding="8dp"/>
+                android:hint="@string/text_edit_hint_name_register_fragment"
+                android:drawablePadding="8dp"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:ignore="LabelFor" />
+
 
             <TextView
                 android:id="@+id/text_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="E-mail"
+                android:text="@string/text_email_register_fragment"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
-                android:id="@+id/edt_email_register"
+                android:id="@+id/edit_email"
+                style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ThemeEditText"
+                android:importantForAutofill="no"
                 android:layout_marginTop="4dp"
-                android:hint="Digite seu e-mail"
+                android:inputType="textEmailAddress"
                 android:drawableStart="@drawable/ic_email"
-                android:drawablePadding="8dp"/>
+                android:hint="@string/text_edit_hint_email_register_fragment"
+                android:drawablePadding="8dp"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:ignore="LabelFor" />
+
 
             <TextView
                 android:id="@+id/text_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Telefone"
+                android:text="@string/text_phone_register_fragment"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
-                android:id="@+id/edt_telephone"
+                android:id="@+id/edt_phone"
+                style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ThemeEditText"
+                android:importantForAutofill="no"
                 android:layout_marginTop="4dp"
-                android:hint="Digite seu telefone"
+                android:inputType="phone"
                 android:drawableStart="@drawable/ic_phone"
-                android:drawablePadding="8dp"/>
+                android:hint="@string/text_edit_hint_phone_register_fragment"
+                android:drawablePadding="8dp"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:ignore="LabelFor" />
 
             <TextView
                 android:id="@+id/text_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Senha"
+                android:text="@string/text_password_register_fragment"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
                 android:id="@+id/edt_password_register"
+                style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ThemeEditText"
+                android:importantForAutofill="no"
                 android:layout_marginTop="4dp"
-                android:hint="Digite sua senha"
+                android:inputType="numberPassword"
                 android:drawableStart="@drawable/ic_password"
-                android:drawablePadding="8dp"/>
+                android:hint="@string/text_edit_hint_password_register_fragment"
+                android:drawablePadding="8dp"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:ignore="LabelFor" />
+
 
             <TextView
                 android:id="@+id/text_confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Confirme a senha"
+                android:text="@string/text_confirm_password_register_fragment"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
                 android:id="@+id/edt_confirm"
+                style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ThemeEditText"
+                android:importantForAutofill="no"
                 android:layout_marginTop="4dp"
-                android:hint="Digite sua senha"
+                android:inputType="numberPassword"
                 android:drawableStart="@drawable/ic_password"
-                android:drawablePadding="8dp"/>
-
+                android:hint="@string/text_edit_hint_confirm_password_register_fragment"
+                android:drawablePadding="8dp"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:ignore="LabelFor" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegister"
@@ -155,7 +192,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_button"
-                android:text="CADASTRAR"
+                android:text="@string/text_button_register_fragment"
+                android:textAllCaps="true"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -166,18 +204,15 @@
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="24dp"
                 android:indeterminateTint="@color/color_default"
-                android:layout_gravity="center_horizontal"
                 android:visibility="invisible"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
 
         </LinearLayout>
 
-
     </LinearLayout>
-
-
 
 </ScrollView>
