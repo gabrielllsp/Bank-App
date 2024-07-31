@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "444707894588",
+    "project_id": "bank-app-a5a68",
+    "storage_bucket": "bank-app-a5a68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444707894588:android:7983dffe868192e9645a39",
+        "android_client_info": {
+          "package_name": "com.gabriel.bankapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4yYhw4QEWVZH8Pwqt9VjuXCYvj22lklE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
