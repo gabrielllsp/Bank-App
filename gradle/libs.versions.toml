@@ -1,8 +1,8 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.1"
 firebaseBom = "33.1.2"
-hiltAndroid = "2.42"
-hiltAndroidCompiler = "2.42"
+hiltAndroid = "2.48.1"
+hiltAndroidCompiler = "2.48.1"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
