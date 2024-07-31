@@ -18,5 +18,11 @@
     <string name="text_password_empty_login_fragment">Digite sua senha</string>
     <string name="text_button_sign_up_register_fragment">Inscrever-se</string>
 
+    <string name="title_forgot_fragment">Digite seu e-mail que te enviaremos um\n link para você alterar sua senha.</string>
+    <string name="text_hint_edit_email_forgot_fragment">Email</string>
+    <string name="text_button_forgot_fragment">Recuperar conta</string>
+    <string name="text_email_empty_forgot_fragment">Digite um e-mail válido</string>
+    <string name="text_send_email_sucess_recover_fragment">Email enviado com sucesso</string>
+
 
 </resources>
