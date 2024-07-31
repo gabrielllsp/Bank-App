@@ -1,4 +1,4 @@
-package com.gabriel.bankapp.presenter.login
+package com.gabriel.bankapp.presenter.auth.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
