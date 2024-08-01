@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.gabriel.bankapp.R
 import com.gabriel.bankapp.databinding.FragmentRecoverBinding
+import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,6 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class RecoverFragment : Fragment() {
     private var _binding: FragmentRecoverBinding? = null
     private val binding get() = _binding!!
+
+    private val recoverViewModel : RecoverViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +46,31 @@ class RecoverFragment : Fragment() {
         val email = binding.editEmail.text.toString().trim()
 
         if (email.isNotEmpty()) {
-            Toast.makeText(requireContext(), "E-mail enviado com sucesso", Toast.LENGTH_SHORT)
-                .show()
+           recoverUser(email)
         } else {
             Toast.makeText(requireContext(), "Dígite seu e-mail", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun recoverUser(email: String) {
+        recoverViewModel.recover(email).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    binding.progressLoading.isVisible = true
+                }
+
+                is StateView.Sucess -> {
+                    binding.progressLoading.isVisible = false
+
+                    Toast.makeText(requireContext(), "Email enviado com sucesso", Toast.LENGTH_SHORT).show()
+                }
+
+                is StateView.Error -> {
+                    binding.progressLoading.isVisible = false
+
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
