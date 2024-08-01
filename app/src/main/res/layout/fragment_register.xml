@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
                 android:layout_marginTop="4dp"
-                android:inputType="numberPassword"
+                android:inputType="textPassword"
                 android:drawableStart="@drawable/ic_password"
                 android:hint="@string/text_edit_hint_password_register_fragment"
                 android:drawablePadding="8dp"
@@ -160,34 +160,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 tools:ignore="LabelFor" />
 
-
-            <TextView
-                android:id="@+id/text_confirm_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/text_confirm_password_register_fragment"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-            <EditText
-                android:id="@+id/edt_confirm"
-                style="@style/ThemeEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:importantForAutofill="no"
-                android:layout_marginTop="4dp"
-                android:inputType="numberPassword"
-                android:drawableStart="@drawable/ic_password"
-                android:hint="@string/text_edit_hint_confirm_password_register_fragment"
-                android:drawablePadding="8dp"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
-                tools:ignore="LabelFor" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegister"
