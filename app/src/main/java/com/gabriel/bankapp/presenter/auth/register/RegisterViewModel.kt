@@ -12,12 +12,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val registerUsecase: RegisterUseCase
+    private val registerUseCase: RegisterUseCase
 ): ViewModel()  {
     fun register(user: User) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
-            registerUsecase.invoke(user)
+            registerUseCase.invoke(user)
             emit(StateView.Sucess(user))
         }catch (ex: Exception){
             emit(StateView.Error(ex.message))
