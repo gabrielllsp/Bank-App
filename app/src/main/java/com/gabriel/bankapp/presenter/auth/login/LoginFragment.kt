@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.gabriel.bankapp.R
 import com.gabriel.bankapp.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,9 +30,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.btnLogin.setOnClickListener {
-            validateData()
+
+        binding.textRecover.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_recoverFragment)
         }
+
+        binding.textRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        binding.btnLogin.setOnClickListener { validateData() }
     }
 
     private fun validateData() {
@@ -39,7 +48,8 @@ class LoginFragment : Fragment() {
 
         if (email.isNotEmpty()) {
             if (password.isNotEmpty()) {
-                Toast.makeText(requireContext(), "Login feito com sucesso!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Login feito com sucesso!!", Toast.LENGTH_SHORT)
+                    .show()
 
             } else {
                 Toast.makeText(requireContext(), "Dígite sua senha", Toast.LENGTH_SHORT).show()
