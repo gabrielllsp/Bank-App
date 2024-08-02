@@ -39,5 +39,8 @@
     <string name="text_edit_hint_confirm_password_register_fragment">Confirme sua senha</string>
     <string name="text_button_register_fragment">Cadastrar</string>
 
+<!--    BottomSheet-->
+    <string name="text_title_bottom_sheet">Atenção</string>
+    <string name="text_button_bottom_sheet">Entendi</string>
 
 </resources>

@@ -14,6 +14,7 @@ import com.gabriel.bankapp.data.model.User
 import com.gabriel.bankapp.databinding.FragmentLoginBinding
 import com.gabriel.bankapp.presenter.auth.register.RegisterViewModel
 import com.gabriel.bankapp.util.StateView
+import com.gabriel.bankapp.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +35,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListener()
+        showBottomSheet(message = "Message")
     }
 
     private fun initListener() {
