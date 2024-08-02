@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
 import com.gabriel.bankapp.databinding.FragmentRecoverBinding
+import com.gabriel.bankapp.util.FirebaseHelper
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.initToolbar
 import com.gabriel.bankapp.util.showBottomSheet
@@ -68,8 +69,7 @@ class RecoverFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
-
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
                 }
             }
         }

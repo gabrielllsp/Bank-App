@@ -1,6 +1,7 @@
 package com.gabriel.bankapp.presenter.auth.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.gabriel.bankapp.R
 import com.gabriel.bankapp.data.model.User
 import com.gabriel.bankapp.databinding.FragmentLoginBinding
 import com.gabriel.bankapp.presenter.auth.register.RegisterViewModel
+import com.gabriel.bankapp.util.FirebaseHelper
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,6 +85,7 @@ class LoginFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
 
                     Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
                 }
