@@ -8,10 +8,13 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.gabriel.bankapp.R
 import com.gabriel.bankapp.data.model.User
 import com.gabriel.bankapp.databinding.FragmentRegisterBinding
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.initToolbar
+import com.gabriel.bankapp.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,20 +67,18 @@ class RegisterFragment : Fragment() {
                         registerUser(user)
 
                     } else {
-                        Toast.makeText(requireContext(), "Dígite sua senha", Toast.LENGTH_SHORT)
-                            .show()
+                        showBottomSheet(message = getString(R.string.text_password_empty))
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Dígite seu telefone", Toast.LENGTH_SHORT)
-                        .show()
+                    showBottomSheet(message = getString(R.string.text_telefone_empty))
                 }
 
             } else {
-                Toast.makeText(requireContext(), "Dígite seu e-mail", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message = getString(R.string.text_email_empty))
             }
 
         } else {
-            Toast.makeText(requireContext(), "Dígite seu nome", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = getString(R.string.text_name_empty))
         }
     }
 
@@ -91,10 +92,7 @@ class RegisterFragment : Fragment() {
                 is StateView.Sucess -> {
                     binding.progressBar.isVisible = false
 
-                    Toast.makeText(
-                        requireContext(), "Usuario registrado com sucesso!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 }
 
                 is StateView.Error -> {

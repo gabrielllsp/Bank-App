@@ -7,6 +7,12 @@
     <string name="text_title_login_fragment">Banco Digital</string>
     <string name="image_logo">image_logo</string>
 
+<!--    Generic-->
+    <string name="text_name_empty">Dígite seu nome</string>
+    <string name="text_email_empty">Dígite seu e-mail</string>
+    <string name="text_telefone_empty">Dígite seu telefone</string>
+    <string name="text_password_empty">Dígite sua senha</string>
+
     <!--    Login Fragment-->
     <string name="title_login_fragment">Entrar na conta</string>
     <string name="text_hint_edit_email_login_fragment">Email</string>
@@ -23,7 +29,7 @@
     <string name="text_hint_edit_email_recover_fragment">Email</string>
     <string name="text_button_recover_fragment">Recuperar conta</string>
     <string name="text_email_empty_recover_fragment">Digite um e-mail válido</string>
-    <string name="text_send_email_sucess_recover_fragment">Email enviado com sucesso</string>
+    <string name="text_send_email_success_recover_fragment">Email enviado com sucesso</string>
 
     <!--    Register Fragment-->
     <string name="title_register_fragment">Criar conta</string>

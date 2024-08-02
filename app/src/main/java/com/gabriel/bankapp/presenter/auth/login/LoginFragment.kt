@@ -35,7 +35,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListener()
-        showBottomSheet(message = "Message")
+
     }
 
     private fun initListener() {
@@ -60,11 +60,11 @@ class LoginFragment : Fragment() {
                 loginUser(email, password)
 
             } else {
-                Toast.makeText(requireContext(), "Dígite sua senha", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message = getString(R.string.text_password_empty))
             }
 
         } else {
-            Toast.makeText(requireContext(), "Dígite seu e-mail", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = getString(R.string.text_email_empty))
         }
     }
 

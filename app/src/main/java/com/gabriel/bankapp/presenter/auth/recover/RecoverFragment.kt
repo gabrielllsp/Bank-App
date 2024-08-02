@@ -13,6 +13,7 @@ import com.gabriel.bankapp.R
 import com.gabriel.bankapp.databinding.FragmentRecoverBinding
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.initToolbar
+import com.gabriel.bankapp.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +49,7 @@ class RecoverFragment : Fragment() {
         if (email.isNotEmpty()) {
            recoverUser(email)
         } else {
-            Toast.makeText(requireContext(), "Dígite seu e-mail", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = getString(R.string.text_email_empty))
         }
     }
 
@@ -62,7 +63,7 @@ class RecoverFragment : Fragment() {
                 is StateView.Sucess -> {
                     binding.progressLoading.isVisible = false
 
-                    Toast.makeText(requireContext(), "Email enviado com sucesso", Toast.LENGTH_SHORT).show()
+                    showBottomSheet(message = getString(R.string.text_send_email_success_recover_fragment))
                 }
 
                 is StateView.Error -> {
