@@ -34,6 +34,7 @@
 
     <!--    Register Fragment-->
     <string name="title_register_fragment">Criar conta</string>
+    <string name="title_phone_invalid_fragment">Dígite um telefone válido</string>
     <string name="text_name_register_fragment">Nome</string>
     <string name="text_edit_hint_name_register_fragment">Digite seu nome</string>
     <string name="text_email_register_fragment">E-mail</string>

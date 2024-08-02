@@ -61,13 +61,17 @@ dependencies {
     implementation(libs.firebase.database.ktx)
 
     // ViewModel
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     // LiveData
-    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     //Dagger Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+
+    //MaskEditText https://github.com/VicMikhailau/MaskedEditText
+    implementation("io.github.vicmikhailau:MaskedEditText:5.0.2")
+
 }

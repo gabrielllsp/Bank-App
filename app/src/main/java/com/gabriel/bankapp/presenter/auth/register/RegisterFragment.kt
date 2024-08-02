@@ -1,11 +1,9 @@
 package com.gabriel.bankapp.presenter.auth.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -51,26 +49,30 @@ class RegisterFragment : Fragment() {
     private fun validateData() {
         val name = binding.editName.text.toString().trim()
         val email = binding.editEmail.text.toString().trim()
-        val phone = binding.edtPhone.text.toString().trim()
+        val phone = binding.edtPhone.unMaskedText
         val password = binding.edtPasswordRegister.text.toString().trim()
 
         if (name.isNotEmpty()) {
             if (email.isNotEmpty()) {
-                if (phone.isNotEmpty()) {
-                    if (password.isNotEmpty()) {
+                if (phone?.isNotEmpty() == true) {
+                    if (phone.length >= 10) {
+                        if (password.isNotEmpty()) {
+                            val user = User(
+                                name = name,
+                                email = email,
+                                phone = phone,
+                                password = password
+                            )
+                            registerUser(user)
 
-
-                        val user = User(
-                            name = name,
-                            email = email,
-                            phone = phone,
-                            password = password
-                        )
-                        registerUser(user)
+                        } else {
+                            showBottomSheet(message = getString(R.string.text_password_empty))
+                        }
 
                     } else {
-                        showBottomSheet(message = getString(R.string.text_password_empty))
+                        showBottomSheet(message = getString(R.string.title_phone_invalid_fragment))
                     }
+
                 } else {
                     showBottomSheet(message = getString(R.string.text_telefone_empty))
                 }
@@ -99,7 +101,13 @@ class RegisterFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
-                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
+                    showBottomSheet(
+                        message = getString(
+                            FirebaseHelper.validError(
+                                stateView.message ?: ""
+                            )
+                        )
+                    )
                 }
             }
         }

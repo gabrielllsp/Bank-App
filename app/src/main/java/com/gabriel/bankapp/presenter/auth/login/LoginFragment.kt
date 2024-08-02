@@ -1,19 +1,15 @@
 package com.gabriel.bankapp.presenter.auth.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
-import com.gabriel.bankapp.data.model.User
 import com.gabriel.bankapp.databinding.FragmentLoginBinding
-import com.gabriel.bankapp.presenter.auth.register.RegisterViewModel
 import com.gabriel.bankapp.util.FirebaseHelper
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.showBottomSheet
@@ -85,15 +81,18 @@ class LoginFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
-                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
+                    showBottomSheet(
+                        message = getString(
+                            FirebaseHelper.validError(
+                                stateView.message ?: ""
+                            )
+                        )
+                    )
 
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

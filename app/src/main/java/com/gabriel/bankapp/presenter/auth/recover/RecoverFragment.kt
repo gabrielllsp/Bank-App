@@ -1,6 +1,7 @@
 package com.gabriel.bankapp.presenter.auth.recover
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,6 +70,7 @@ class RecoverFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
+
                     showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
                 }
             }
