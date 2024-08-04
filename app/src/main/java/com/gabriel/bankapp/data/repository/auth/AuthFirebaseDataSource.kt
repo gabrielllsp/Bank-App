@@ -6,7 +6,7 @@ interface AuthFirebaseDataSource {
 
     suspend fun login(email: String, password: String)
 
-    suspend fun register(user: User): User
+    suspend fun register(name: String, email: String,phone: String, password: String): User
 
     suspend fun recover(email: String)
 
