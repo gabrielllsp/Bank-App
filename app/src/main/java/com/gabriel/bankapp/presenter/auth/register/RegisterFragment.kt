@@ -10,8 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
 import com.gabriel.bankapp.data.model.User
+import com.gabriel.bankapp.data.model.Wallet
 import com.gabriel.bankapp.databinding.FragmentRegisterBinding
 import com.gabriel.bankapp.presenter.profile.ProfileViewModel
+import com.gabriel.bankapp.presenter.wallet.WalletViewModel
 import com.gabriel.bankapp.util.FirebaseHelper
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.initToolbar
@@ -26,6 +28,7 @@ class RegisterFragment : Fragment() {
 
     private val registerViewModel: RegisterViewModel by viewModels()
     private val profileViewModel: ProfileViewModel by viewModels()
+    private val walletViewModel: WalletViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -120,6 +123,34 @@ class RegisterFragment : Fragment() {
                 }
 
                 is StateView.Sucess -> {
+                    initWallet()
+                }
+
+                is StateView.Error -> {
+                    binding.progressBar.isVisible = false
+                    showBottomSheet(
+                        message = getString(
+                            FirebaseHelper.validError(
+                                stateView.message ?: ""
+                            )
+                        )
+                    )
+                }
+            }
+        }
+
+    }
+
+    private fun initWallet(){
+        walletViewModel.initWallet(Wallet(
+            userId = FirebaseHelper.getUserId()
+        )).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Sucess -> {
                     binding.progressBar.isVisible = false
                     findNavController().navigate(R.id.action_global_homeFragment)
                 }
@@ -136,7 +167,6 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
-
     }
 
     override fun onDestroy() {
