@@ -56,6 +56,8 @@
     <string name="text_title_balance_home_fragment">Saldo Disponível</string>
     <string name="text_activity_six_balance_home_fragment">Últimas 6 atividades</string>
     <string name="text_activity_all_balance_home_fragment">Ver todas</string>
+    <string name="text_formated_value">R$ %1$s</string>
+
 
 <!--    BottomSheet-->
     <string name="text_title_bottom_sheet">Atenção</string>
