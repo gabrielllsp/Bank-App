@@ -8,7 +8,7 @@ class SaveProfileUseCase @Inject constructor(
     private val profileRepositoryImpl: ProfileDataSourceImpl
 ) {
     suspend operator fun invoke(user: User) {
-        profileRepositoryImpl.saveProfile(user)
+        return profileRepositoryImpl.saveProfile(user)
     }
 
 }

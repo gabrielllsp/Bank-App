@@ -47,6 +47,13 @@
     <string name="text_edit_hint_confirm_password_register_fragment">Confirme sua senha</string>
     <string name="text_button_register_fragment">Cadastrar</string>
 
+<!--    Home Fragment-->
+    <string name="text_icon_deposit_home_fragment">Depositar</string>
+    <string name="text_icon_recharge_home_fragment">Recarga de celular</string>
+    <string name="text_icon_extract_home_fragment">Extrato</string>
+    <string name="text_icon_transfer_home_fragment">Transferir</string>
+    <string name="text_icon_user_home_fragment">Perfil</string>
+
 <!--    BottomSheet-->
     <string name="text_title_bottom_sheet">Atenção</string>
     <string name="text_button_bottom_sheet">Entendi</string>

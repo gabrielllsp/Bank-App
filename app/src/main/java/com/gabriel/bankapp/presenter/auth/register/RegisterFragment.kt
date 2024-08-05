@@ -96,6 +96,7 @@ class RegisterFragment : Fragment() {
                 is StateView.Sucess -> {
                     stateView.data?.let {
                         saveProfile(it)
+                        initWallet()
                     }
 
                     findNavController().navigate(R.id.action_global_homeFragment)
