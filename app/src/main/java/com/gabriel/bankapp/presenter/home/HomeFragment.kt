@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
 import com.gabriel.bankapp.data.model.Wallet
 import com.gabriel.bankapp.databinding.FragmentHomeBinding
@@ -34,6 +35,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getWallet()
+        initListeners()
+    }
+
+    private fun initListeners(){
+        binding.cardDeposit.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
+        }
+
     }
 
     private fun getWallet() {

@@ -8,12 +8,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 fun Fragment.initToolbar(
     toolbar: androidx.appcompat.widget.Toolbar,
-    homeAsUpEnabled: Boolean = true
+    homeAsUpEnabled: Boolean = true,
+    light: Boolean = false
 ) {
+    val iconBack = if (light) R.drawable.ic_arrow_back_white else R.drawable.ic_arrow_back
+
     (activity as AppCompatActivity).setSupportActionBar(toolbar)
     (activity as AppCompatActivity).title = ""
     (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(homeAsUpEnabled)
-    (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+    (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(iconBack)
     toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
 }
 

@@ -1,15 +1,12 @@
 package com.gabriel.bankapp.presenter.auth.recover
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
 import com.gabriel.bankapp.databinding.FragmentRecoverBinding
 import com.gabriel.bankapp.util.FirebaseHelper
@@ -23,7 +20,7 @@ class RecoverFragment : Fragment() {
     private var _binding: FragmentRecoverBinding? = null
     private val binding get() = _binding!!
 
-    private val recoverViewModel : RecoverViewModel by viewModels()
+    private val recoverViewModel: RecoverViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +32,7 @@ class RecoverFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar(binding.toolbar)
+        initToolbar(toolbar = binding.toolbar, light = false)
         initListener()
     }
 
@@ -49,7 +46,7 @@ class RecoverFragment : Fragment() {
         val email = binding.editEmail.text.toString().trim()
 
         if (email.isNotEmpty()) {
-           recoverUser(email)
+            recoverUser(email)
         } else {
             showBottomSheet(message = getString(R.string.text_email_empty))
         }
@@ -71,7 +68,13 @@ class RecoverFragment : Fragment() {
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
 
-                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
+                    showBottomSheet(
+                        message = getString(
+                            FirebaseHelper.validError(
+                                stateView.message ?: ""
+                            )
+                        )
+                    )
                 }
             }
         }
