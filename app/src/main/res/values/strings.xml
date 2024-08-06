@@ -58,11 +58,21 @@
     <string name="text_activity_all_balance_home_fragment">Ver todas</string>
     <string name="text_formated_value">R$ %1$s</string>
 
-<!--    Deposit Fragment-->
+    <!--    Deposit Fragment-->
     <string name="title_deposit_fragment">Depositar</string>
     <string name="btn_deposit_fragment">Confirmar</string>
     <string name="text_report_deposit_fragment">Informe o valor a ser depositado.</string>
     <string name="text_amount_deposit_fragment">Valor do depósito.</string>
+
+<!--    DepositReceipt Fragment-->
+    <string name="title_deposit_receipt_fragment">Comprovante</string>
+    <string name="btn_deposit_receipt_fragment">Continuar</string>
+    <string name="text_title_deposit_receipt_fragment">Seu depósito foi realizado\n com sucesso!</string>
+    <string name="text_sub_title_deposit_receipt_fragment">Seu depósito ficará disponível em até 3 dias.</string>
+    <string name="text_code_transaction_deposit_receipt_fragment">Código da transação</string>
+    <string name="text_date_transaction_deposit_receipt_fragment">Data depósito</string>
+    <string name="text_amount_transaction_deposit_receipt_fragment">Valor depósito</string>
+
 
 
     <!--    BottomSheet-->

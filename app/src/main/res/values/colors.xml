@@ -9,4 +9,7 @@
     <color name="gray">#9E9E9E</color>
     <color name="blue">#007bc7</color>
     <color name="yellow">#ffd900</color>
+
+    <color name="color_sucess">#24BC61</color>
+    <color name="color_error">#FA0014</color>
 </resources>
