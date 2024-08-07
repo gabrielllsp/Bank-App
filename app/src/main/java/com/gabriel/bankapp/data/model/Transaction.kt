@@ -1,14 +1,12 @@
 package com.gabriel.bankapp.data.model
 
-import com.google.firebase.database.FirebaseDatabase
+import com.gabriel.bankapp.data.transaction_enum.TransactionOperation
+import com.gabriel.bankapp.data.transaction_enum.TransactionType
 
 data class Transaction(
     var id: String = "",
-    val description: String = "",
+    val operation: TransactionOperation? = null,
     val date: Long = 0,
-    val value: Float = 0f
-) {
-    init {
-        this.id = FirebaseDatabase.getInstance().reference.push().key ?: ""
-    }
-}
+    val amount: Float = 0f,
+    val type: TransactionType? = null
+)

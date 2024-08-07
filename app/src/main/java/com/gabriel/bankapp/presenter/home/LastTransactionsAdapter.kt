@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gabriel.bankapp.data.model.Transaction
+import com.gabriel.bankapp.data.transaction_enum.TransactionOperation
+import com.gabriel.bankapp.data.transaction_enum.TransactionType
 import com.gabriel.bankapp.databinding.LastTransactionItemBinding
 import com.gabriel.bankapp.util.GetMask
 
@@ -45,14 +47,13 @@ class LastTransactionsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transaction = getItem(position)
 
-        holder.binding.textTransactionDescription.text = transaction.description
-        holder.binding.textTransactionType.text = when (transaction.description) {
-            "Transferência" -> "T"
-            "Recarga" -> "R"
-            "Depósito" -> "D"
-            else -> ""
+        transaction.operation?.let {
+            holder.binding.textTransactionDescription.text = TransactionOperation.getOperation(it)
+
+            holder.binding.textTransactionType.text = TransactionType.getType(it).toString()
         }
-        holder.binding.textTransactionValue.text = GetMask.getFormatedValue(transaction.value)
+
+        holder.binding.textTransactionValue.text = GetMask.getFormatedValue(transaction.amount)
         holder.binding.textTransactionDate.text =
             GetMask.getFormatedDate(transaction.date, GetMask.DAY_MONTH_YEAR_HOUR_MINUTE)
 

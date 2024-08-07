@@ -9,6 +9,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.gabriel.bankapp.data.model.Deposit
+import com.gabriel.bankapp.data.model.Transaction
+import com.gabriel.bankapp.data.transaction_enum.TransactionOperation
+import com.gabriel.bankapp.data.transaction_enum.TransactionType
 import com.gabriel.bankapp.databinding.FragmentDepositFormBinding
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.initToolbar
@@ -44,27 +47,36 @@ class DepositFormFragment : Fragment() {
         }
     }
 
-    private fun validateDeposit(){
+    private fun validateDeposit() {
         val amount = binding.editAmount.text.toString().trim()
 
-        if (amount.isNotEmpty()){
+        if (amount.isNotEmpty()) {
             val deposit = Deposit(amount = amount.toFloat())
             saveDeposit(deposit)
 
-        }else{
+        } else {
             Toast.makeText(requireContext(), "Digite um valor", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun saveDeposit(deposit: Deposit){
-        depositViewModel.saveDeposit(deposit).observe(viewLifecycleOwner){ stateView ->
-            when(stateView){
+    private fun saveDeposit(deposit: Deposit) {
+        depositViewModel.saveDeposit(deposit).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
                 is StateView.Loading -> {
                     binding.progressLoading.isVisible = true
                 }
+
                 is StateView.Sucess -> {
-                    Toast.makeText(requireContext(), "Deposito realizado com sucesso", Toast.LENGTH_SHORT).show()
+                    val transaction = Transaction(
+                        id = stateView.data?.id ?: "",
+                        operation = TransactionOperation.DEPOSIT,
+                        date = stateView.data?.date ?: 0,
+                        amount = stateView.data?.amount ?: 0f,
+                        type = TransactionType.CASH_IN
+                    )
+                    saveTransaction(transaction)
                 }
+
                 is StateView.Error -> {
                     showBottomSheet(message = stateView.message)
                 }
@@ -72,6 +84,27 @@ class DepositFormFragment : Fragment() {
         }
     }
 
+    private fun saveTransaction(transaction: Transaction) {
+        depositViewModel.saveTransaction(transaction).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Sucess -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Deposito realizado com sucesso",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                is StateView.Error -> {
+                    showBottomSheet(message = stateView.message)
+                }
+            }
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

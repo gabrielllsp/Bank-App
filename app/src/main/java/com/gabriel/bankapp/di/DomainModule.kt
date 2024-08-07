@@ -4,6 +4,8 @@ import com.gabriel.bankapp.data.repository.auth.AuthFirebaseDataSource
 import com.gabriel.bankapp.data.repository.auth.AuthFirebaseDataSourceImpl
 import com.gabriel.bankapp.data.repository.deposit.DepositDataSource
 import com.gabriel.bankapp.data.repository.deposit.DepositDataSourceImpl
+import com.gabriel.bankapp.data.repository.transaction.TransactionDataSource
+import com.gabriel.bankapp.data.repository.transaction.TransactionDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,4 +24,9 @@ abstract class DomainModule {
     abstract fun bindsDepositDataSource(
         depositDataSourceImpl: DepositDataSourceImpl
     ): DepositDataSource
+
+    @Binds
+    abstract fun bindsTransactionDataSource(
+        transactionDataSourceImpl: TransactionDataSourceImpl
+    ): TransactionDataSource
 }
