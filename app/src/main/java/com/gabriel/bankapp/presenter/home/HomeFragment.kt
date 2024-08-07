@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
+import com.gabriel.bankapp.data.model.Transaction
 import com.gabriel.bankapp.data.model.Wallet
+import com.gabriel.bankapp.data.transaction_enum.TransactionType
 import com.gabriel.bankapp.databinding.FragmentHomeBinding
 import com.gabriel.bankapp.util.GetMask
 import com.gabriel.bankapp.util.StateView
@@ -34,7 +36,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getWallet()
+        getTransaction()
         initListeners()
     }
 
@@ -45,8 +47,8 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun getWallet() {
-        homeViewModel.getWallet().observe(viewLifecycleOwner) { stateView ->
+    private fun getTransaction() {
+        homeViewModel.getTransaction().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
 
                 is StateView.Loading -> {
@@ -54,7 +56,7 @@ class HomeFragment : Fragment() {
                 }
 
                 is StateView.Sucess -> {
-                    stateView.data?.let { showBalance(it) }
+                    showBalance(stateView.data ?: emptyList())
                 }
 
                 is StateView.Error -> {
@@ -64,9 +66,19 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showBalance(wallet: Wallet) {
+    private fun showBalance(transactions: List<Transaction>) {
+        var cashIn = 0f
+        var cashOut = 0f
+
+        transactions.forEach{ transactions ->
+            if(transactions.type == TransactionType.CASH_IN){
+                cashIn += transactions.amount
+            }else{
+                cashOut += transactions.amount
+            }
+        }
         binding.valueBalance.text =
-            getString(R.string.text_formated_value, GetMask.getFormatedValue(wallet.balance))
+            getString(R.string.text_formated_value, GetMask.getFormatedValue(cashIn - cashOut))
 
     }
 
