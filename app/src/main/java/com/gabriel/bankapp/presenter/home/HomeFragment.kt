@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
 import com.gabriel.bankapp.data.model.Transaction
-import com.gabriel.bankapp.data.model.Wallet
 import com.gabriel.bankapp.data.transaction_enum.TransactionType
 import com.gabriel.bankapp.databinding.FragmentHomeBinding
 import com.gabriel.bankapp.util.GetMask
@@ -24,6 +24,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var adapterTransaction: TransactionsAdapter
 
 
     override fun onCreateView(
@@ -36,8 +37,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        configRecyclerView()
         getTransaction()
         initListeners()
+    }
+
+    private fun configRecyclerView() {
+        adapterTransaction = TransactionsAdapter(requireContext()) { transaction ->
+
+        }
+        with(binding.rvTransactions){
+            setHasFixedSize(true)
+            adapter = adapterTransaction
+        }
     }
 
     private fun initListeners(){
@@ -52,14 +64,19 @@ class HomeFragment : Fragment() {
             when (stateView) {
 
                 is StateView.Loading -> {
-
+                    binding.progressBar.isVisible = true
                 }
 
                 is StateView.Sucess -> {
+                    binding.progressBar.isVisible = false
+
+                    adapterTransaction.submitList(stateView.data?.reversed())
+
                     showBalance(stateView.data ?: emptyList())
                 }
 
                 is StateView.Error -> {
+                    binding.progressBar.isVisible = false
                     showBottomSheet(message = stateView.message)
                 }
             }

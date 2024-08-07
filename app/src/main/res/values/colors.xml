@@ -12,4 +12,7 @@
 
     <color name="color_sucess">#24BC61</color>
     <color name="color_error">#FA0014</color>
+
+    <color name="color_cash_in">#24BC61</color>
+    <color name="color_cash_out">#FA0014</color>
 </resources>
