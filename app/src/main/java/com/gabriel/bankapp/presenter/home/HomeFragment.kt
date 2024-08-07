@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gabriel.bankapp.R
 import com.gabriel.bankapp.data.model.Transaction
+import com.gabriel.bankapp.data.transaction_enum.TransactionOperation
 import com.gabriel.bankapp.data.transaction_enum.TransactionType
 import com.gabriel.bankapp.databinding.FragmentHomeBinding
 import com.gabriel.bankapp.util.GetMask
@@ -44,6 +45,12 @@ class HomeFragment : Fragment() {
 
     private fun configRecyclerView() {
         adapterTransaction = TransactionsAdapter(requireContext()) { transaction ->
+            when(transaction.operation){
+                TransactionOperation.DEPOSIT -> {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDepositReceiptFragment(transaction.id, true)
+                    findNavController().navigate(action)
+                }else -> {}
+            }
 
         }
         with(binding.rvTransactions){

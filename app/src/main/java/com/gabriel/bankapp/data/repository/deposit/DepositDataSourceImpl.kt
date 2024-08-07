@@ -2,8 +2,11 @@ package com.gabriel.bankapp.data.repository.deposit
 
 import com.gabriel.bankapp.data.model.Deposit
 import com.gabriel.bankapp.util.FirebaseHelper
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
+import com.google.firebase.database.ValueEventListener
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
@@ -41,6 +44,28 @@ class DepositDataSourceImpl @Inject constructor(
                         }
                     }
                 }
+        }
+    }
+
+    override suspend fun getDeposit(id: String): Deposit {
+        return suspendCoroutine { continuation ->
+            depositReference
+                .child(id)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val deposit = snapshot.getValue(Deposit::class.java)
+                        deposit?.let {
+                            continuation.resumeWith(Result.success(it))
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        error.toException().let{
+                            continuation.resumeWith(Result.failure(it))
+                        }
+                    }
+
+                })
         }
     }
 }
