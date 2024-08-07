@@ -4,6 +4,9 @@ plugins {
     id("com.google.gms.google-services")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -55,6 +58,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
+
     //Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth.ktx)
@@ -73,5 +78,7 @@ dependencies {
 
     //MaskEditText https://github.com/VicMikhailau/MaskedEditText
     implementation("io.github.vicmikhailau:MaskedEditText:5.0.2")
+
+
 
 }
