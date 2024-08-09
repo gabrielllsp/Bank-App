@@ -1,4 +1,4 @@
-package com.gabriel.bankapp.presenter.home
+package com.gabriel.bankapp.presenter.features.extract
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,19 +12,22 @@ import com.gabriel.bankapp.R
 import com.gabriel.bankapp.data.model.Transaction
 import com.gabriel.bankapp.data.transaction_enum.TransactionOperation
 import com.gabriel.bankapp.data.transaction_enum.TransactionType
-import com.gabriel.bankapp.databinding.FragmentHomeBinding
+import com.gabriel.bankapp.databinding.FragmentExtractBinding
+import com.gabriel.bankapp.presenter.home.HomeFragmentDirections
+import com.gabriel.bankapp.presenter.home.TransactionsAdapter
 import com.gabriel.bankapp.util.GetMask
 import com.gabriel.bankapp.util.StateView
+import com.gabriel.bankapp.util.initToolbar
 import com.gabriel.bankapp.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class ExtractFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentExtractBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val extractViewModel: ExtractViewModel by viewModels()
     private lateinit var adapterTransaction: TransactionsAdapter
 
 
@@ -32,22 +35,23 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentExtractBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar(toolbar = binding.toolbar, light = true)
         configRecyclerView()
         getTransaction()
-        initListeners()
     }
 
     private fun configRecyclerView() {
         adapterTransaction = TransactionsAdapter(requireContext()) { transaction ->
             when(transaction.operation){
                 TransactionOperation.DEPOSIT -> {
-                    val action = HomeFragmentDirections.actionHomeFragmentToDepositReceiptFragment(transaction.id, true)
+                    val action = ExtractFragmentDirections.actionExtractFragmentToDepositReceiptFragment(transaction.id, true)
+
                     findNavController().navigate(action)
                 }else -> {}
             }
@@ -59,23 +63,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initListeners(){
-        binding.btnShowAll.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
-        }
-
-        binding.cardExtract.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
-        }
-
-        binding.cardDeposit.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
-        }
-
-    }
-
     private fun getTransaction() {
-        homeViewModel.getTransaction().observe(viewLifecycleOwner) { stateView ->
+        extractViewModel.getTransaction().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
 
                 is StateView.Loading -> {
@@ -85,9 +74,7 @@ class HomeFragment : Fragment() {
                 is StateView.Sucess -> {
                     binding.progressBar.isVisible = false
 
-                    adapterTransaction.submitList(stateView.data?.reversed()?.take(6))
-
-                    showBalance(stateView.data ?: emptyList())
+                    adapterTransaction.submitList(stateView.data?.reversed())
                 }
 
                 is StateView.Error -> {
@@ -96,22 +83,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun showBalance(transactions: List<Transaction>) {
-        var cashIn = 0f
-        var cashOut = 0f
-
-        transactions.forEach{ transactions ->
-            if(transactions.type == TransactionType.CASH_IN){
-                cashIn += transactions.amount
-            }else{
-                cashOut += transactions.amount
-            }
-        }
-        binding.valueBalance.text =
-            getString(R.string.text_formated_value, GetMask.getFormatedValue(cashIn - cashOut))
-
     }
 
     override fun onDestroy() {

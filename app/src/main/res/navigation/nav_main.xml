@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_homeFragment_to_depositReceiptFragment"
             app:destination="@id/depositReceiptFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_extractFragment"
+            app:destination="@id/extractFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFormFragment"
@@ -85,5 +88,14 @@
         <argument
             android:name="homeAsUpEnabled"
             app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/extractFragment"
+        android:name="com.gabriel.bankapp.presenter.features.extract.ExtractFragment"
+        android:label="fragment_extract"
+        tools:layout="@layout/fragment_extract" >
+        <action
+            android:id="@+id/action_extractFragment_to_depositReceiptFragment"
+            app:destination="@id/depositReceiptFragment" />
     </fragment>
 </navigation>

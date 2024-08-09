@@ -64,7 +64,7 @@
     <string name="text_report_deposit_fragment">Informe o valor a ser depositado.</string>
     <string name="text_amount_deposit_fragment">Valor do depósito.</string>
 
-<!--    DepositReceipt Fragment-->
+    <!--    DepositReceipt Fragment-->
     <string name="title_deposit_receipt_fragment">Comprovante</string>
     <string name="btn_deposit_receipt_fragment">Continuar</string>
     <string name="text_title_deposit_receipt_fragment">Seu depósito foi realizado\n com sucesso!</string>
@@ -73,6 +73,8 @@
     <string name="text_date_transaction_deposit_receipt_fragment">Data depósito</string>
     <string name="text_amount_transaction_deposit_receipt_fragment">Valor depósito</string>
 
+<!--    Extract Fragment-->
+    <string name="text_title_extract_fragment">Extrato</string>
 
 
     <!--    BottomSheet-->
