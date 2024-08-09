@@ -8,14 +8,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.gabriel.bankapp.R
-import com.gabriel.bankapp.data.model.Transaction
 import com.gabriel.bankapp.data.transaction_enum.TransactionOperation
-import com.gabriel.bankapp.data.transaction_enum.TransactionType
 import com.gabriel.bankapp.databinding.FragmentExtractBinding
-import com.gabriel.bankapp.presenter.home.HomeFragmentDirections
 import com.gabriel.bankapp.presenter.home.TransactionsAdapter
-import com.gabriel.bankapp.util.GetMask
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.initToolbar
 import com.gabriel.bankapp.util.showBottomSheet
@@ -48,16 +43,22 @@ class ExtractFragment : Fragment() {
 
     private fun configRecyclerView() {
         adapterTransaction = TransactionsAdapter(requireContext()) { transaction ->
-            when(transaction.operation){
+            when (transaction.operation) {
                 TransactionOperation.DEPOSIT -> {
-                    val action = ExtractFragmentDirections.actionExtractFragmentToDepositReceiptFragment(transaction.id, true)
+                    val action =
+                        ExtractFragmentDirections.actionExtractFragmentToDepositReceiptFragment(
+                            transaction.id,
+                            true
+                        )
 
                     findNavController().navigate(action)
-                }else -> {}
+                }
+
+                else -> {}
             }
 
         }
-        with(binding.rvTransactions){
+        with(binding.rvTransactions) {
             setHasFixedSize(true)
             adapter = adapterTransaction
         }

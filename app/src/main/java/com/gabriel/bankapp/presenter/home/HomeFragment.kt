@@ -13,6 +13,7 @@ import com.gabriel.bankapp.data.model.Transaction
 import com.gabriel.bankapp.data.transaction_enum.TransactionOperation
 import com.gabriel.bankapp.data.transaction_enum.TransactionType
 import com.gabriel.bankapp.databinding.FragmentHomeBinding
+import com.gabriel.bankapp.util.FirebaseHelper
 import com.gabriel.bankapp.util.GetMask
 import com.gabriel.bankapp.util.StateView
 import com.gabriel.bankapp.util.showBottomSheet
@@ -60,6 +61,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun initListeners(){
+
+        binding.imageLogout.setOnClickListener {
+           FirebaseHelper.getAuth().signOut()
+            findNavController().navigate(R.id.action_homeFragment_to_authentication)
+
+        }
         binding.btnShowAll.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
         }
